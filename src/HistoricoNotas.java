@@ -5,6 +5,7 @@ public class HistoricoNotas {
 
     public HistoricoNotas() {
         this.historico = new HashMap<>();
+
     }
 
     void adicionarMatricula(int idEstudante, String codigoDisciplina, double nota) {
@@ -78,6 +79,18 @@ public class HistoricoNotas {
             return 0.0;
         }
         return somaNotas / contador;
+    }
+
+    //metodo de topEstudantesPorMedia
+    List<EstudanteMedia> topNEPM(int N){   //cria um arraylist vazio para armazenar os objetos EstudanteMedia dos alunos
+        List<EstudanteMedia> ranking = new ArrayList<>();
+        for (int id: historico.keySet()){  //retorna um set com os ids no historicoNotas
+            double media = mediaEstudante(id);  //ao achar um id, chama o metodo mediaEstudante
+            ranking.add(new EstudanteMedia(id,media)); //cria um novo objeto EstudanteMedia com os dados e adiciona a lista de ranking
+        }
+        ranking.sort(Comparator.comparing(EstudanteMedia::getMedia).reversed());
+        int limite = Math.min(N, ranking.size());
+        return ranking.subList(0,limite);
     }
 
 }

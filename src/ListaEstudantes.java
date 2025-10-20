@@ -18,7 +18,6 @@ public class ListaEstudantes{
 
     //obtendo estudante por indice
     public Estudante oEPI(int indice){
-
         return estudantes.get(indice) ;
     }
 
@@ -37,5 +36,15 @@ public class ListaEstudantes{
     void oEPN(){
         estudantes.sort(null);
     }
+    //obter estudante por id
+    Estudante oEPId(int id){
+        for (Estudante estudante : estudantes){
+            if(estudante.getId() == id){
+                return estudante;
+            }
+        }
+        return null;
+    }
+
 
 }
