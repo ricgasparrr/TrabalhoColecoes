@@ -1,10 +1,15 @@
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
+import java.util.Collections;
+import java.util.Collection;
 
 
 public class ListaEstudantes{
-    private ArrayList<Estudante> estudantes = new ArrayList<>();
+    private final List<Estudante> estudantes = new ArrayList<>();
+
+    public void adicionarEstudante(Estudante e){
+        estudantes.add(e);
+    }
 
     //adicionando estudante por id
     void aE(Estudante e){
@@ -32,7 +37,7 @@ public class ListaEstudantes{
         return resultado;
     }
 
-    public List<Estudante> obterTodosEstudantes() {
+    public Collection<Estudante> obterTodosEstudantes() {
         return new ArrayList<>(this.estudantes);
     }
 
@@ -56,6 +61,20 @@ public class ListaEstudantes{
             }
         }
         return null;
+    }
+
+    public List<Estudante> getEstudantes() {
+        return this.estudantes;
+    }
+
+    public List<Estudante> obterEstudantesOrdenadosPorNome() {
+        // Cria uma CÓPIA da lista original
+        List<Estudante> listaOrdenada = new ArrayList<>(this.estudantes);
+
+        // Ordena a cópia usando o Comparable que você implementou em Estudante.java
+        Collections.sort(listaOrdenada);
+
+        return listaOrdenada;
     }
 
 

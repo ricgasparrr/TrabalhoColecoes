@@ -4,9 +4,23 @@ public class Estudante  implements Comparable<Estudante>{
     private int id;
     private String nome;
 
-    Estudante(String nome,int id){
+    public Estudante(String nome,int id){
         this.nome=nome;
         this.id=id;
+    }
+
+
+    @Override
+    public int compareTo(Estudante outroEstudante) {
+
+
+        return this.nome.compareTo(outroEstudante.getNome());
+    }
+
+
+    @Override
+    public String toString() {
+        return "ID: " + this.id + " | Nome: " + this.nome;
     }
 
     public int getId() {
@@ -26,14 +40,4 @@ public class Estudante  implements Comparable<Estudante>{
     }
 
 
-    @Override
-    public int compareTo(Estudante outroEstudante) {
-        return this.nome.compareTo(outroEstudante.getNome());
-    }
-
-
-    @Override
-    public String toString() {
-        return "ID: " + this.id + " | Nome: " + this.nome;
-    }
 }

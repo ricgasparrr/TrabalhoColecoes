@@ -87,7 +87,7 @@ public class Main {
     private static void carregarEstudantes(ListaEstudantes lista, PrintWriter out) {
         out.println(">> CARREGANDO ESTUDANTES...");
         try (BufferedReader br = new BufferedReader(new FileReader(ESTUDANTE_CSV))) {
-            br.readLine(); // Pula o cabeçalho
+            br.readLine(); // Pula o cabecalho
             String linha;
             while ((linha = br.readLine()) != null) {
                 String[] partes = linha.split(",", 2);
@@ -95,7 +95,7 @@ public class Main {
                     try {
                         int id = Integer.parseInt(partes[0].trim());
                         String nome = partes[1].trim();
-                        lista.estudantes(new Estudante(nome, id));
+                        lista.adicionarEstudante(new Estudante(nome, id));
                     } catch (NumberFormatException e) {
                         out.println("AVISO: ID de estudante inválido ignorado na linha: " + linha);
                     }
@@ -164,13 +164,13 @@ public class Main {
         out.println("\n== PASSO 4: Médias e Matrículas por Estudante ==");
         for (Estudante e : listaEstudantes.obterTodosEstudantes()) { // Assume-se um método 'obterTodosEstudantes' não ordenado
             double media = historico.mediaEstudante(e.getId());
-            List<Matricula> matriculas = historico.obterMatricula(e.getId());
+            List<Matriculas> matriculas = historico.obterMatricula(e.getId());
 
             out.printf("ID: %d | Nome: %s | Média: %.2f%n", e.getId(), e.getNome(), media);
 
             if (matriculas != null && !matriculas.isEmpty()) {
                 out.println("   Matrículas:");
-                for (Matricula m : matriculas) {
+                for (Matriculas m : matriculas) {
                     out.printf("     -> %s (Nota: %.2f)%n", m.getCodigoDisciplina(), m.getNota());
                 }
             }
@@ -201,10 +201,12 @@ public class Main {
         out.println("\n== PASSO 5b: Disciplinas com Média Final < 6.0 ==");
         boolean encontrado = false;
 
-        for (Disciplina d : cadastro.obterTodasDisciplinas()) {
+        for (Disciplinas d : cadastro.obterTodasDisciplinas()) {
             double media = historico.mediaDisciplina(d.getCodigo());
             if (media < 6.0 && media > 0) { // Média > 0 para ignorar disciplinas sem matrículas
                 out.printf("  [BAIXA] Código: %s | Nome: %s | Média: %.2f%n", d.getCodigo(), d.getNome(), media);
                 encontrado = true;
             }
         }
+    }
+}
