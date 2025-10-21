@@ -32,6 +32,10 @@ public class ListaEstudantes{
         return resultado;
     }
 
+    public List<Estudante> obterTodosEstudantes() {
+        return new ArrayList<>(this.estudantes);
+    }
+
     //Ordenando estudante por nome
     void oEPN(){
         estudantes.sort(null);
@@ -41,6 +45,14 @@ public class ListaEstudantes{
         for (Estudante estudante : estudantes){
             if(estudante.getId() == id){
                 return estudante;
+            }
+        }
+        return null;
+    }
+    public Estudante buscarPorId(int id) {
+        for (Estudante e : estudantes) {
+            if (e.getId() == id) {
+                return e;
             }
         }
         return null;
