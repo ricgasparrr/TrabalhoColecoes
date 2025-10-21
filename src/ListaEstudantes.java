@@ -6,22 +6,22 @@ import java.util.List;
 public class ListaEstudantes{
     private ArrayList<Estudante> estudantes = new ArrayList<>();
 
-    //adicionando estudante por id
+    //Metodo para adicionar estudante por id
     void aE(Estudante e){
         estudantes.add(e);
     }
 
-    //removendo estudante por id
+    //Metodo para remover estudante por id
     void rEPI(int id){
         estudantes.removeIf(e -> e.getId() == id );
     }
 
-    //obtendo estudante por indice
+    //Metodo para obter estudante por indice
     public Estudante oEPI(int indice){
         return estudantes.get(indice) ;
     }
 
-    //buscando estudante por nome
+    //Metodo para buscar estudante por nome
     List<Estudante> bEPN(String substring){
         List<Estudante> resultado = new ArrayList<>();
         for(Estudante estudante : estudantes){
@@ -36,11 +36,11 @@ public class ListaEstudantes{
         return new ArrayList<>(this.estudantes);
     }
 
-    //Ordenando estudante por nome
+    //Metodo para ordenar os estudantes por nome
     void oEPN(){
         estudantes.sort(null);
     }
-    //obter estudante por id
+    //Metodo para obter estudante por id
     Estudante oEPId(int id){
         for (Estudante estudante : estudantes){
             if(estudante.getId() == id){
@@ -49,6 +49,7 @@ public class ListaEstudantes{
         }
         return null;
     }
+    //Metodo responsável por buscar o estudante pelo Id
     public Estudante buscarPorId(int id) {
         for (Estudante e : estudantes) {
             if (e.getId() == id) {

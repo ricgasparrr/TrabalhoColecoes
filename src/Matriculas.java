@@ -1,3 +1,8 @@
+/**
+ * Classe auxiliar para armazenar as variaveis codigoDisciplina e nota.
+ * Implementado o construtor, getters e setters.
+ */
+
 public class Matriculas {
     String codigoDisciplina;
     double nota;
@@ -8,19 +13,19 @@ public class Matriculas {
         this.nota = nota;
     }
 
-    public String getCodigoDisciplina() {
+     String getCodigoDisciplina() {
         return codigoDisciplina;
     }
 
-    public void setCodigoDisciplina(String codigoDisciplina) {
+     void setCodigoDisciplina(String codigoDisciplina) {
         this.codigoDisciplina = codigoDisciplina;
     }
 
-    public double getNota() {
+     double getNota() {
         return nota;
     }
 
-    public void setNota(double nota) {
+     void setNota(double nota) {
         this.nota = nota;
     }
 }
