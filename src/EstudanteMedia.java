@@ -1,4 +1,7 @@
-//classe auxiliar para armazenar somente as variáveis idEstudante e média em uma lista
+/**
+ * Classe auxiliar para armazenar somente as variáveis idEstudante e média em uma lista.
+ * Implementado o construtor e os getters.
+ */
 
 public class EstudanteMedia {
     private final int idEstudante;

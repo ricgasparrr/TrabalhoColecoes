@@ -1,4 +1,7 @@
-
+/**
+ * Classe auxiliar para guardar as variaveis de id e nome.
+ * Implementado o construtor de Estudante, getters, setters e Override
+ */
 
 public class Estudante  implements Comparable<Estudante>{
     private int id;
