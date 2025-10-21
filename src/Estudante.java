@@ -1,6 +1,6 @@
 
 
-public class Estudante  {
+public class Estudante  implements Comparable<Estudante>{
     private int id;
     private String nome;
 
@@ -23,5 +23,17 @@ public class Estudante  {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+
+    @Override
+    public int compareTo(Estudante outroEstudante) {
+        return this.nome.compareTo(outroEstudante.getNome());
+    }
+
+
+    @Override
+    public String toString() {
+        return "ID: " + this.id + " | Nome: " + this.nome;
     }
 }

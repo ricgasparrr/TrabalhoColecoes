@@ -13,6 +13,11 @@ public class HistoricoNotas {
 
     }
 
+    public Set<Integer> obterTodosIds() {
+        // Retorna o Set de chaves (IDs dos estudantes) do Map.
+        return historico.keySet();
+    }
+
     /**Adiciona uma nova matricula ao historico do estudante(disciplina e nota)
      * Verifica se o estudante já existe(adiciona à lista existente)
      * Se não, o estudante é novo e cria uma nova lista.
