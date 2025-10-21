@@ -1,3 +1,8 @@
+/**Classe responsável por gerenciar matriculas e notas dos estudantes
+ *Estrutura principal é Map, onde o id do estudante é a key
+ * o value é a listaMatriculas e notas do estudante
+ */
+
 import java.util.*;
 
 public class HistoricoNotas {
@@ -8,6 +13,10 @@ public class HistoricoNotas {
 
     }
 
+    /**Adiciona uma nova matricula ao historico do estudante(disciplina e nota)
+     * Verifica se o estudante já existe(adiciona à lista existente)
+     * Se não, o estudante é novo e cria uma nova lista.
+     */
     void adicionarMatricula(int idEstudante, String codigoDisciplina, double nota) {
         Matriculas novaMatricula = new Matriculas(codigoDisciplina, nota);
         if (historico.containsKey(idEstudante)) {
@@ -22,12 +31,14 @@ public class HistoricoNotas {
         }
     }
 
-    //Obter matricula
+    //Obter matricula. Retorna a lista de todas as matrículas de um estudante ao buscar o Id
     List<Matriculas> obterMatricula(int idEstudante) {
         return historico.get(idEstudante);
     }
 
-    //obter nota
+    /**Metodo obter nota. Busca a nota do estudante em uma disciplina especifica.
+     *Usa o Optional<Double> para cuidar do caso onde o aluno ou a disciplina não existem.
+     */
     Optional<Double> obterNota(int idEstudante, String codigoDisciplina) {
         List<Matriculas> matriculas = obterMatricula(idEstudante);
         if (matriculas == null) {
@@ -41,7 +52,9 @@ public class HistoricoNotas {
         return Optional.empty();
     }
 
-
+    /**Metodo remover matricula. Remove uma matricula especifica do historico do estudante.
+     * Utiliza um removeIf() para buscar e remover o elemento.
+     */
     void removerMatricula(int idEstudante, String codigoDisciplina){
     List<Matriculas> matriculas = obterMatricula(idEstudante);
         if (matriculas != null) {
@@ -49,6 +62,10 @@ public class HistoricoNotas {
         }
     }
 
+    /**
+     *Metodo para calcular a media do estudante. Calcula a media aritmetica das notas de um estudante.
+     * Retorna 0.0 se não tiver matriculas ou o estudante não for encontrado.
+     */
     double mediaEstudante(int idEstudante){
         List<Matriculas> matriculas = obterMatricula(idEstudante);
         if (matriculas == null){
@@ -81,8 +98,13 @@ public class HistoricoNotas {
         return somaNotas / contador;
     }
 
-    //metodo de topEstudantesPorMedia
-    List<EstudanteMedia> topNEPM(int N){   //cria um arraylist vazio para armazenar os objetos EstudanteMedia dos alunos
+    /**Metodo para ranquear os estudantes por media. Gera um ranking dos N melhores estudantes ordenados por média de forma decrescente
+     *Coleta todos os Ids usando historico.keySet() e calcula a media de cada um.
+     * Armazena o Id e a media em uma lista EstudanteMedia.
+     * Ordena usando um Comparator, que compara e inverte.
+     * Retorna uma sublista com os N primeiros elementos.
+     */
+     List<EstudanteMedia> topNEPM(int N){   //cria um arraylist vazio para armazenar os objetos EstudanteMedia dos alunos
         List<EstudanteMedia> ranking = new ArrayList<>();
         for (int id: historico.keySet()){  //retorna um set com os ids no historicoNotas
             double media = mediaEstudante(id);  //ao achar um id, chama o metodo mediaEstudante
